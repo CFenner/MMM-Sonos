@@ -44,9 +44,8 @@ Module.create({
 			this.render.bind(this)
 		).then(function(){
 			this.updateDom(this.config.fadeInterval);
-			//setInterval(this.run.bind(this), this.config.updateInterval);
+			setInterval(this.run.bind(this), this.config.updateInterval);
 			return Q(1);
-			//$('.sonosModule').updateWithText(text, 4000);
 		}.bind(this)).done();
 	},
 	load: function(){
@@ -86,38 +85,14 @@ Module.create({
 					:''
 				)
 			);
-			/*
-			text += this.html.roomWrapper.format(
-				(state === 'PLAYING'
-					?
-					
-					
-						this.html.song.format()				
-						this.html.room.format(room)
-					:(this.config.showStoppedRoom
-						?this.html.room.format(room)
-						:''
-					)
-				)
-			);*//*
-			this.html.art.format(art)
-			if(state === 'PLAYING')
-				text += '<li><img src="'+art+'"/>' + room  + ': ' + artist + ' - ' + track + '</li>';
-			else{
-				if(this.config.showStoppedRoom)
-					text += '<li>' + room  + ': </li>';
-				else
-					return true;
-			}*/
 		}.bind(this));
-		this.dom = '<ul>' + text + '</ul>';
+		this.dom = text;
 	},
 	getScripts: function() {
 		return [
 			'//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js',
 			'q.min.js',
 			'moment.js',
-//			'jquery.tickerNews.min'
 		];
 	},
 	getStyles: function() {
@@ -126,12 +101,6 @@ Module.create({
 		];
 	},
 	getDom: function() {
-		//var complimentText = this.randomCompliment();
-		//var compliment = document.createTextNode(complimentText);       
-		//var wrapper = document.createElement("div");
-		//wrapper.className = 'thin xlarge';
-		//wrapper.appendChild(compliment);
-		//<div class="sonosModule small light bottom left"></div>
-		return $('<div class="sonos">'+this.dom+'</div>')[0]; 
+		return $('<div class="sonos"><ul>'+this.dom+'</ul></div>')[0]; 
 	}
 });
