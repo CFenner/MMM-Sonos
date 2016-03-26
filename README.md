@@ -1,6 +1,6 @@
 # MagicMirror-Sonos-Module
 
-This is an extraction of the Sonos Monitor from the sonos branch of[Vaggans](https://github.com/Vaggan) [MagicMirror](https://github.com/Vaggan/MagicMirror/tree/sonos-module/modules/sonos-module) repository. It was modified to fit the new module system and got some enhancements in visualisation an configuration.
+This is an extraction of the Sonos Monitor from the sonos branch of [Vaggans](https://github.com/Vaggan) [MagicMirror](https://github.com/Vaggan/MagicMirror/tree/sonos-module/modules/sonos-module) repository. It was modified to fit the new module system and got some enhancements in visualisation an configuration.
 
 ## Usage
 
