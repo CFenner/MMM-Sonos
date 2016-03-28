@@ -19,18 +19,6 @@ Module.create({
 	},
 	start: function() {
 		Log.info('Starting module: ' + this.name);
-		// add string format method
-		if (!String.prototype.format) {
-			String.prototype.format = function() {
-				var args = arguments;
-				return this.replace(/{(\d+)}/g, function(match, number) { 
-					return typeof args[number] != 'undefined'
-						? args[number]
-						: match
-					;
-				});
-			};
-		}
 		var that = this;
 		this.run();
 	},
@@ -90,6 +78,7 @@ Module.create({
 	},
 	getScripts: function() {
 		return [
+			'String.format.js',
 			'//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js',
 			'q.min.js',
 			'moment.js',
