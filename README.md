@@ -15,7 +15,7 @@ To use this module, copy
 
 To use this module, just create a new folder in the __modules__ folder of your MagicMirror, name it 'sonos' and copy the content of the repository into this folder. You also need to add some [config entries](#configuration) to your config.js file. After that the content will be added to your mirror.
 
-### Configucation
+### Configuration
 
 To run the module properly, you need to add the following data to your config.js file.
 
