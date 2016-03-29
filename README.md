@@ -2,6 +2,8 @@
 
 This is an extraction of the Sonos Monitor from the sonos branch of [Vaggans](https://github.com/Vaggan) [MagicMirror](https://github.com/Vaggan/MagicMirror/tree/sonos-module/modules/sonos-module) repository. It was modified to fit the new module system and got some enhancements in visualisation an configuration.
 
+![Sonos Module](https://cloud.githubusercontent.com/assets/9592452/14062687/a0e77434-f3a8-11e5-816c-4766afc98d90.png)
+
 ## Usage
 
 _Prerequisites_
