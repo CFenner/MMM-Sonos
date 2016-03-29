@@ -8,8 +8,8 @@ This is an extraction of the Sonos Monitor from the sonos branch of [Vaggans](ht
 
 _Prerequisites_
 
+- requires MagicMirror v2.0.0
 - install and run [node-sonos-http-api](https://github.com/jishi/node-sonos-http-api)
-- use the new MagicMirror module system
 
 To use this module, copy 
 
