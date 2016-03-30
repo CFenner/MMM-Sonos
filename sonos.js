@@ -26,9 +26,7 @@ Module.create({
 	run: function(){
 		Q.fcall(
 			this.load.bind(this),
-			function(error){
-				console.log('Nej ' + error);
-			}
+			this.error.bind(this)
 		).then(
 			this.render.bind(this)
 		).then(function(){
@@ -76,6 +74,9 @@ Module.create({
 			);
 		}.bind(this));
 		this.dom = text;
+	},
+	error: function(error){
+		console.log('Failure:' + error);
 	},
 	getScripts: function() {
 		return [
