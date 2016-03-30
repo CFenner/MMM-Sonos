@@ -11,6 +11,7 @@ Module.create({
 		}
 	},
 	html: {
+		loading: '<div class="dimmed light small">Loading music ...</div>',
 		roomWrapper: '<li>{0}</li>',
 		room: '<div class="room xsmall">{0}</div>',
 		song: '<div>{0}</div>',
@@ -90,6 +91,6 @@ Module.create({
 		];
 	},
 	getDom: function() {
-		return $('<div class="sonos"><ul>'+this.dom+'</ul></div>')[0]; 
+		return $('<div class="sonos">'+(this.dom?'<ul>'+this.dom+'</ul>':this.html.loading)+'</div>')[0]; 
 	}
 });
