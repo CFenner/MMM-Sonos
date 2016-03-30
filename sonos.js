@@ -3,7 +3,7 @@ Module.create({
 		showStoppedRoom: true,
 		showAlbumArt: true,
 		showRoomName: true,
-		fadeSpeed: 4000,
+		fadeSpeed: 1000,
 		updateInterval: 1 * 60 * 1000, // every minute
 		api: {
 			base: '//localhost:5005/',
@@ -20,21 +20,23 @@ Module.create({
 	},
 	start: function() {
 		Log.info('Starting module: ' + this.name);
-		this.run();
+		this.update();
 		// refresh every x minutes
 		setInterval(
-			this.run.bind(this), 
+			this.update.bind(this), 
 			this.config.updateInterval);
 	},
-	run: function(){
+	update: function(){
 		Q.fcall(
 			this.load.bind(this),
 			this.error.bind(this)
 		).then(
 			this.render.bind(this)
-		).done(function(){
-			this.updateDom(this.config.fadeSpeed);
-		}.bind(this));
+		).done(
+			function(){
+				this.updateDom(this.config.fadeSpeed);
+			}.bind(this)
+		);
 	},
 	load: function(){
 		return Q($.ajax({
@@ -75,6 +77,7 @@ Module.create({
 			);
 		}.bind(this));
 		this.dom = text;
+		this.loaded = true;
 	},
 	error: function(error){
 		console.log('Failure:' + error);
@@ -93,6 +96,9 @@ Module.create({
 		];
 	},
 	getDom: function() {
-		return $('<div class="sonos">'+(this.dom?'<ul>'+this.dom+'</ul>':this.html.loading)+'</div>')[0]; 
+		if (!this.loaded) {
+			return $('<div class="sonos">'+this.html.loading+'</div>')[0];
+		}
+		return $('<div class="sonos"><ul>'+this.dom+'</ul></div>')[0]; 
 	}
 });
