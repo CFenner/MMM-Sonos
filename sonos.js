@@ -98,7 +98,10 @@ Module.create({
 	getDom: function() {
 		if (!this.loaded) {
 			return $('<div class="sonos">'+this.html.loading+'</div>')[0];
+		}else if(this.data.position.endsWith("left")){
+			return $('<div class="sonos"><ul class="flip">'+this.dom+'</ul></div>')[0];
+		}else{
+			return $('<div class="sonos"><ul>'+this.dom+'</ul></div>')[0];
 		}
-		return $('<div class="sonos"><ul>'+this.dom+'</ul></div>')[0]; 
 	}
 });
