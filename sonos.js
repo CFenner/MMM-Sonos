@@ -1,10 +1,10 @@
 Module.create({
 	defaults: {
-		updateInterval: 60000,
-		fadeSpeed: 4000,
 		showStoppedRoom: true,
 		showAlbumArt: true,
 		showRoomName: true,
+		fadeSpeed: 4000,
+		updateInterval: 60000,
 		api: {
 			base: '//localhost:5005/',
 			zonesEndpoint: 'zones'
@@ -32,7 +32,7 @@ Module.create({
 		).then(
 			this.render.bind(this)
 		).done(function(){
-			this.updateDom(this.config.fadeInterval);
+			this.updateDom(this.config.fadeSpeed);
 		}.bind(this));
 	},
 	load: function(){
