@@ -4,7 +4,7 @@ Module.create({
 		showAlbumArt: true,
 		showRoomName: true,
 		fadeSpeed: 4000,
-		updateInterval: 60000,
+		updateInterval: 1 * 60 * 1000, // every minute
 		api: {
 			base: '//localhost:5005/',
 			zonesEndpoint: 'zones'
@@ -21,6 +21,7 @@ Module.create({
 	start: function() {
 		Log.info('Starting module: ' + this.name);
 		this.run();
+		// refresh every x minutes
 		setInterval(
 			this.run.bind(this), 
 			this.config.updateInterval);
