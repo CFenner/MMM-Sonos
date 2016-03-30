@@ -30,12 +30,8 @@ Module.create({
 		Q.fcall(
 			this.load.bind(this),
 			this.error.bind(this)
-		).then(
-			this.render.bind(this)
 		).done(
-			function(){
-				this.updateDom(this.config.fadeSpeed);
-			}.bind(this)
+			this.render.bind(this)
 		);
 	},
 	load: function(){
@@ -76,8 +72,12 @@ Module.create({
 				)
 			);
 		}.bind(this));
-		this.dom = text;
 		this.loaded = true;
+		// only update dom if content changed
+		if(this.dom !== text){
+			this.dom = text;
+			this.updateDom(this.config.fadeSpeed);
+		}
 	},
 	error: function(error){
 		console.log('Failure:' + error);
