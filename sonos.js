@@ -20,8 +20,10 @@ Module.create({
 	},
 	start: function() {
 		Log.info('Starting module: ' + this.name);
-		var that = this;
 		this.run();
+		setInterval(
+			this.run.bind(this), 
+			this.config.updateInterval);
 	},
 	run: function(){
 		Q.fcall(
@@ -29,11 +31,9 @@ Module.create({
 			this.error.bind(this)
 		).then(
 			this.render.bind(this)
-		).then(function(){
+		).done(function(){
 			this.updateDom(this.config.fadeInterval);
-			setInterval(this.run.bind(this), this.config.updateInterval);
-			return Q(1);
-		}.bind(this)).done();
+		}.bind(this));
 	},
 	load: function(){
 		return Q($.ajax({
