@@ -1,2 +1,25 @@
-.sonos ul{list-style-type:none;padding:0;margin:0}.sonos ul .name,.sonos ul .art{display:inline-block;vertical-align:middle}.sonos ul .name{padding:0 .25em}.sonos ul .art img{height:100px}.sonos ul .room{font-size:50%;padding:.25em .5em}.sonos ul.flip{direction:rtl}
+.sonos ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.sonos ul .name,
+.sonos ul .art {
+  display: inline-block;
+  vertical-align: middle;
+}
+.sonos ul .name {
+  padding: 0 .25em;
+}
+.sonos ul .art img {
+  height: 100px;
+}
+.sonos ul .room {
+  font-size: 50%;
+  padding: .25em .5em;
+}
+.sonos ul.flip {
+  direction: rtl;
+}
+
 /* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */

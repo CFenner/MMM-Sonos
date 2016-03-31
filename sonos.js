@@ -4,19 +4,10 @@ Module.create({
 		showAlbumArt: true,
 		showRoomName: true,
 		fadeSpeed: 1000,
-		updateInterval: 1 * 60 * 1000, // every minute
-		api: {
-			base: '//localhost:5005/',
-			zonesEndpoint: 'zones'
-		}
-	},
-	html: {
-		loading: '<div class="dimmed light small">Loading music ...</div>',
-		roomWrapper: '<li>{0}</li>',
-		room: '<div class="room xsmall">{0}</div>',
-		song: '<div>{0}</div>',
-		name: '<div class="name normal medium"><div>{0}</div><div>{1}</div></div>',
-		art: '<div class="art"><img src="{0}"/></div>'
+		updateInterval: 0.5 * 60 * 1000, // every 0.5 minutes
+		apiBase: '//localhost',
+		apiPort: 5005,
+		apiEndpoint: 'zones'
 	},
 	start: function() {
 		Log.info('Starting module: ' + this.name);
@@ -27,16 +18,16 @@ Module.create({
 			this.config.updateInterval);
 	},
 	update: function(){
-		Q.fcall(
+		Q.fcall( // load data
 			this.load.bind(this),
 			this.error.bind(this)
-		).done(
+		).done( // render data
 			this.render.bind(this)
 		);
 	},
 	load: function(){
 		return Q($.ajax({
-			url: this.config.api.base + this.config.api.zonesEndpoint
+			url: this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.apiEndpoint
 		}));
 	},
 	render: function(data){
@@ -56,9 +47,11 @@ Module.create({
 				room = room.slice(0, -2);
 			}
 			text += this.html.roomWrapper.format(
+				// show song if PLAYING
 				(state === 'PLAYING'
 					?this.html.song.format(
 						this.html.name.format(artist, track)+
+						// show album art if 'showAlbumArt' is set
 						(this.config.showAlbumArt
 							?this.html.art.format(cover)
 							:''
@@ -66,7 +59,9 @@ Module.create({
 						//+"<span>"+streamInfo+"</span>"
 					)
 					:''
-				)+(this.config.showRoomName && (state === 'PLAYING' || this.config.showStoppedRoom)
+				)
+				// show room name if 'showRoomName' is set and PLAYING or 'showStoppedRoom' is set
+				+(this.config.showRoomName && (state === 'PLAYING' || this.config.showStoppedRoom)
 					?this.html.room.format(room)
 					:''
 				)
@@ -82,26 +77,33 @@ Module.create({
 	error: function(error){
 		console.log('Failure:' + error);
 	},
+	html: {
+		loading: '<div class="dimmed light small">Loading music ...</div>',
+		roomWrapper: '<li>{0}</li>',
+		room: '<div class="room xsmall">{0}</div>',
+		song: '<div>{0}</div>',
+		name: '<div class="name normal medium"><div>{0}</div><div>{1}</div></div>',
+		art: '<div class="art"><img src="{0}"/></div>'
+	},
 	getScripts: function() {
 		return [
 			'String.format.js',
 			'//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js',
-			'q.min.js',
-			'moment.js',
+			'q.min.js'
 		];
 	},
 	getStyles: function() {
-		return [
-			'sonos.css'
-		];
+		return ['sonos.css'];
 	},
 	getDom: function() {
+		var content = '';
 		if (!this.loaded) {
-			return $('<div class="sonos">'+this.html.loading+'</div>')[0];
+			content = this.html.loading;
 		}else if(this.data.position.endsWith("left")){
-			return $('<div class="sonos"><ul class="flip">'+this.dom+'</ul></div>')[0];
+			content = '<ul class="flip">'+this.dom+'</ul>';
 		}else{
-			return $('<div class="sonos"><ul>'+this.dom+'</ul></div>')[0];
+			content = '<ul>'+this.dom+'</ul>';
 		}
+		return $('<div class="sonos">'+content+'</div>')[0];
 	}
 });
