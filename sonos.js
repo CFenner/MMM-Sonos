@@ -1,10 +1,10 @@
-Module.create({
+Module.register('sonos', {
 	defaults: {
 		showStoppedRoom: true,
 		showAlbumArt: true,
 		showRoomName: true,
-		fadeSpeed: 1000,
-		updateInterval: 0.5 * 60 * 1000, // every 0.5 minutes
+		animationSpeed: 1000,
+		updateInterval: 0.5, // every 0.5 minutes
 		apiBase: '//localhost',
 		apiPort: 5005,
 		apiEndpoint: 'zones'
@@ -15,7 +15,7 @@ Module.create({
 		// refresh every x minutes
 		setInterval(
 			this.update.bind(this), 
-			this.config.updateInterval);
+			this.config.updateInterval * 60 * 1000);
 	},
 	update: function(){
 		Q.fcall( // load data
@@ -71,7 +71,7 @@ Module.create({
 		// only update dom if content changed
 		if(this.dom !== text){
 			this.dom = text;
-			this.updateDom(this.config.fadeSpeed);
+			this.updateDom(this.config.animationSpeed);
 		}
 	},
 	error: function(error){
