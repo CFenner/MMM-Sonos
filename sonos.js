@@ -14,21 +14,19 @@ Module.register('sonos', {
 		this.update();
 		// refresh every x minutes
 		setInterval(
-			this.update.bind(this), 
+			this.update.bind(this),
 			this.config.updateInterval * 60 * 1000);
 	},
 	update: function(){
-		Q.fcall( // load data
-			this.load.bind(this),
-			this.error.bind(this)
-		).done( // render data
-			this.render.bind(this)
-		);
+		this.load();
 	},
 	load: function(){
-		return Q($.ajax({
+		$.ajax({
 			url: this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.apiEndpoint
-		}));
+		}).then(
+			this.render.bind(this),
+			this.error.bind(this)
+		);
 	},
 	render: function(data){
 		var text = '';
@@ -88,8 +86,7 @@ Module.register('sonos', {
 	getScripts: function() {
 		return [
 			'String.format.js',
-			'//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js',
-			'q.min.js'
+			'//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js'
 		];
 	},
 	getStyles: function() {
