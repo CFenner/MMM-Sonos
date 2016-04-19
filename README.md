@@ -28,17 +28,12 @@ To run the module properly, you need to add the following data to your config.js
 ```
 
 You also can set some options to hide different parts of the module.
-- Use `showStoppedRoom: false` to hide a room if it plays no musik.
-- Use `showAlbumArt: false` to hide the album art.
-- Use `showRoomName: false` to hide the room name.
 
-```
-	config: {
-		showStoppedRoom: true,
-		showAlbumArt: true,
-		showRoomName: true
-	}
-```
+| Option | Description |
+|---|---| 
+|`showStoppedRoom`|Trigger the visualization of stopped rooms.<br><br>**Default value:** `true`|
+|`showAlbumArt`|Trigger the visualization of the album art.<br><br>**Default value:** `true`|
+|`showRoomName`|Trigger the visualization of the room name.<br><br>**Default value:** `true`|
 
 ### Known Issues
 
