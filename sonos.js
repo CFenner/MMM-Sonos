@@ -1,11 +1,17 @@
-Module.register('sonos', {
+/* Magic Mirror
+ * Module: MagicMirror-Sonos-Module
+ *
+ * By Christopher Fenner https://github.com/CFenner
+ * MIT Licensed.
+ */
+ Module.register('sonos', {
 	defaults: {
 		showStoppedRoom: true,
 		showAlbumArt: true,
 		showRoomName: true,
 		animationSpeed: 1000,
 		updateInterval: 0.5, // every 0.5 minutes
-		apiBase: '//localhost',
+		apiBase: 'http://localhost',
 		apiPort: 5005,
 		apiEndpoint: 'zones'
 	},
@@ -18,15 +24,9 @@ Module.register('sonos', {
 			this.config.updateInterval * 60 * 1000);
 	},
 	update: function(){
-		this.load();
-	},
-	load: function(){
-		$.ajax({
-			url: this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.apiEndpoint
-		}).then(
-			this.render.bind(this),
-			this.error.bind(this)
-		);
+		this.sendSocketNotification(
+			'SONOS_UPDATE',
+			this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.apiEndpoint);
 	},
 	render: function(data){
 		var text = '';
@@ -44,26 +44,7 @@ Module.register('sonos', {
 				});
 				room = room.slice(0, -2);
 			}
-			text += this.html.roomWrapper.format(
-				// show song if PLAYING
-				(state === 'PLAYING'
-					?this.html.song.format(
-						this.html.name.format(artist, track)+
-						// show album art if 'showAlbumArt' is set
-						(this.config.showAlbumArt
-							?this.html.art.format(cover)
-							:''
-						)
-						//+"<span>"+streamInfo+"</span>"
-					)
-					:''
-				)
-				// show room name if 'showRoomName' is set and PLAYING or 'showStoppedRoom' is set
-				+(this.config.showRoomName && (state === 'PLAYING' || this.config.showStoppedRoom)
-					?this.html.room.format(room)
-					:''
-				)
-			);
+			text += this.renderRoom(state, artist, track, cover, room);
 		}.bind(this));
 		this.loaded = true;
 		// only update dom if content changed
@@ -72,8 +53,25 @@ Module.register('sonos', {
 			this.updateDom(this.config.animationSpeed);
 		}
 	},
-	error: function(error){
-		console.log('Failure:' + error);
+	renderRoom: function(state, artist, track, cover, roomName) {
+		var room = '';
+		// show song if PLAYING
+		if(state === 'PLAYING') {
+			room += this.html.song.format(
+				this.html.name.format(artist, track)+
+				// show album art if 'showAlbumArt' is set
+				(this.config.showAlbumArt
+					?this.html.art.format(cover)
+					:''
+				)
+				//+"<span>"+streamInfo+"</span>"
+			);
+		}
+		// show room name if 'showRoomName' is set and PLAYING or 'showStoppedRoom' is set
+		if(this.config.showRoomName && (state === 'PLAYING' || this.config.showStoppedRoom)) {
+			room += this.html.room.format(roomName);
+		}
+		return  this.html.roomWrapper.format(room);
 	},
 	html: {
 		loading: '<div class="dimmed light small">Loading music ...</div>',
@@ -102,5 +100,11 @@ Module.register('sonos', {
 			content = '<ul>'+this.dom+'</ul>';
 		}
 		return $('<div class="sonos">'+content+'</div>')[0];
-	}
+	},
+  socketNotificationReceived: function(notification, payload) {
+      if (notification === 'SONOS_DATA') {
+          Log.info('received SONOS_DATA');
+					this.render(payload);
+      }
+  }
 });
