@@ -1,5 +1,10 @@
 # MagicMirror-Sonos-Module
 
+<p>
+<a href="https://github.com/jishi/node-sonos-http-api"><img src="https://img.shields.io/badge/Sonos-API-orange.svg" alt="API"></a>
+<a href="http://choosealicense.com/licenses/mit"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+</p>
+
 This is an adaption Sonos module of [Vaggan's](https://github.com/Vaggan) [MagicMirror-SonosModule](https://github.com/Vaggan/MagicMirror-SonosModule). It was modified to fit the new module system and got some enhancements in visualisation an configuration.
 
 ![Sonos Module](https://github.com/CFenner/MagicMirror-Sonos-Module/blob/master/.github/preview.png)
