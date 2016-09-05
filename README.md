@@ -39,6 +39,7 @@ You also can set some options to hide different parts of the module.
 |`showStoppedRoom`|Trigger the visualization of stopped rooms.<br><br>**Default value:** `true`|
 |`showAlbumArt`|Trigger the visualization of the album art.<br><br>**Default value:** `true`|
 |`showRoomName`|Trigger the visualization of the room name.<br><br>**Default value:** `true`|
+|`exclude`|Exclude specific speakers from showing in module.<br>example: exclude: ['speaker name 1','Speaker name 2','Speaker name 3']<br>**Default value:** '[]'|
 
 ### Known Issues
 
