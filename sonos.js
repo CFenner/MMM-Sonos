@@ -30,7 +30,6 @@
 			this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.apiEndpoint);
 	},
 	render: function(data){
-	console.log(data)
 		var text = '';
 		$.each(data, (i, item) => {
 			if(this.config.exclude.indexOf(item.coordinator.roomName) === -1 || item.members.length > 1){
