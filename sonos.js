@@ -32,10 +32,10 @@
 		var text = '';
 		$.each(data, function (i, item) {
 			var room = item.coordinator.roomName;
-			var state = item.coordinator.state.zoneState;
+			var state = item.coordinator.state.playbackState;
 			var artist = item.coordinator.state.currentTrack.artist;
 			var track = item.coordinator.state.currentTrack.title;
-			var cover = item.coordinator.state.currentTrack.absoluteAlbumArtURI;
+			var cover = item.coordinator.state.currentTrack.absoluteAlbumArtUri;
 			var streamInfo = item.coordinator.state.currentTrack.streamInfo;
 			if(item.members.length > 1){
 				room = '';
