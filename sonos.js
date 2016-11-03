@@ -55,13 +55,14 @@
 		}
 	},
 	renderRoom: function(state, artist, track, cover, roomName) {
+		artist = artist?artist:"";
+		track = track?track:"";
+		cover = cover?cover:"";
 		var room = '';
 		// if Sonos Playbar is in TV mode, no title is provided and therefore the room should not be displayed
 		var isEmpty = (artist && artist.trim().length) == 0
 			&& (track && track.trim().length) == 0
 			&& (cover && cover.trim().length) == 0;
-		artist = artist?artist:"";
-		track = track?track:"";
 		// show song if PLAYING
 		if(state === 'PLAYING' && !isEmpty) {
 			room += this.html.song.format(
