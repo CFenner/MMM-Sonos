@@ -61,6 +61,7 @@
 			&& (track && track.trim().length) == 0
 			&& (cover && cover.trim().length) == 0;
 		artist = artist?artist:"";
+		track = track?track:"";
 		// show song if PLAYING
 		if(state === 'PLAYING' && !isEmpty) {
 			room += this.html.song.format(
