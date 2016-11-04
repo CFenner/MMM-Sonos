@@ -34,11 +34,12 @@
 		$.each(data, (i, item) => {
 			if(this.config.exclude.indexOf(item.coordinator.roomName) === -1 || item.members.length > 1){
 				var room = item.coordinator.roomName;
-				var state = item.coordinator.state.zoneState;
+				var state = item.coordinator.state.playbackState;
 				var artist = item.coordinator.state.currentTrack.artist;
 				var track = item.coordinator.state.currentTrack.title;
-				var cover = item.coordinator.state.currentTrack.absoluteAlbumArtURI;
+				var cover = item.coordinator.state.currentTrack.absoluteAlbumArtUri;
 				var streamInfo = item.coordinator.state.currentTrack.streamInfo;
+				var type = item.coordinator.state.currentTrack.type;
 				if(item.members.length > 1){
 					room = '';
 					$.each(item.members, (j, member) => {
@@ -49,7 +50,7 @@
 					room = room.replace(/, $/,"");
 				}
 				if(room !== ''){
-					text += this.renderRoom(state, artist, track, cover, room);
+ 					text += this.renderRoom(state, artist, track, cover, room);
 				}
 			}
 		});
@@ -61,6 +62,9 @@
 		}
 	},
 	renderRoom: function(state, artist, track, cover, roomName) {
+		artist = artist?artist:"";
+		track = track?track:"";
+		cover = cover?cover:"";
 		var room = '';
 		// if Sonos Playbar is in TV mode, no title is provided and therefore the room should not be displayed
 		var isEmpty = (artist && artist.trim().length) == 0
