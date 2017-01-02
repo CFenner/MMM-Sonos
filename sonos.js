@@ -38,7 +38,7 @@
 				$.each(item.members, function (j, member) {
 					var isExcluded = this.config.exclude.indexOf(member.roomName) !== -1;
 					room += isExcluded?'':(member.roomName + ', ');
-				});
+				}.bind(this));
 				room = room.replace(/, $/,"");
 			}else{
 				room = item.coordinator.roomName;
