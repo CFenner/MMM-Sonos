@@ -47,11 +47,15 @@
 			}
 			if(room !== ''){
 				var state = item.coordinator.state.playbackState;
-				var artist = item.coordinator.state.currentTrack.artist;
-				var track = item.coordinator.state.currentTrack.title;
-				var cover = item.coordinator.state.currentTrack.absoluteAlbumArtUri;
-				var streamInfo = item.coordinator.state.currentTrack.streamInfo;
-				var type = item.coordinator.state.currentTrack.type;
+				var currentTrack = item.coordinator.state.currentTrack;
+				var artist = currentTrack.artist;
+				var track = currentTrack.title;
+				var cover = currentTrack.absoluteAlbumArtUri;
+				var streamInfo = currentTrack.streamInfo;
+				var type = currentTrack.type;
+
+				if(track == currentTrack.uri)
+					track = '';
 				text += this.renderRoom(state, artist, track, cover, room);
 			}
 		}.bind(this));
