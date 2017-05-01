@@ -29,7 +29,7 @@ git clone https://github.com/CFenner/MMM-Sonos
 ```
 Navigate to the new MMM-Sonos folder and install the node dependencies.
 ```shell
-cd MMM-Sonos/ && npm install
+cd MMM-Sonos/ && npm install --production
 ```
 Configure the module in your config.js file.
 
