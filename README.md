@@ -61,3 +61,29 @@ The module may not be able to access the data of the sonos API due to a Cross-Or
   res.setHeader("Access-Control-Allow-Origin", "http://localhost");
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 ```
+
+### How to Install Sonos-API
+
+To install the Sonos-API just clone the [repository](https://github.com/jishi/node-sonos-http-api) to your PI. 
+
+```shell
+git clone https://github.com/jishi/node-sonos-http-api.git
+```
+Navigate to the new node-sonos-http-api folder and install the node dependencies.
+```shell
+cd node-sonos-http-api && npm install --production
+```
+Now you can run the service with:
+
+```shell
+npm start
+```
+I really recommend to use PM2 like it is described on the MagicMirror [Wiki page](https://github.com/MichMich/MagicMirror/wiki/Auto-Starting-MagicMirror).
+```shell
+cd ~/Sonos
+npm start
+```
+
+
+
+
