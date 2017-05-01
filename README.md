@@ -18,7 +18,20 @@ _Prerequisites_
 
 ### Installation
 
-To use this module, just create a new folder in the __modules__ folder of your MagicMirror, name it 'sonos' and copy the content of the repository into this folder. You also need to add some [config entries](#configuration) to your config.js file. After that the content will be added to your mirror.
+Navigate into your MagicMirror's modules folder:
+
+```shell
+cd ~/MagicMirror/modules
+```
+Clone this repository:
+```shell
+git clone https://github.com/CFenner/MMM-Sonos
+```
+Navigate to the new MMM-Sonos folder and install the node dependencies.
+```shell
+cd MMM-Sonos/ && npm install
+```
+[Configure](#configuration) the module in your config.js file.
 
 ### Configuration
 
@@ -26,7 +39,7 @@ To run the module properly, you need to add the following data to your config.js
 
 ```
 {
-	module: 'sonos',
+	module: 'MMM-Sonos',
 	position: 'top_right', // you may choose any location
 	config: {}
 }
@@ -35,7 +48,7 @@ To run the module properly, you need to add the following data to your config.js
 You also can set some options to hide different parts of the module.
 
 | Option | Description |
-|---|---| 
+|---|---|
 |`showStoppedRoom`|Trigger the visualization of stopped rooms.<br><br>**Default value:** `true`|
 |`showAlbumArt`|Trigger the visualization of the album art.<br><br>**Default value:** `true`|
 |`showRoomName`|Trigger the visualization of the room name.<br><br>**Default value:** `true`|
