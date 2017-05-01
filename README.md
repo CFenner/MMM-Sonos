@@ -5,7 +5,7 @@
 <a href="http://choosealicense.com/licenses/mit"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
 </p>
 
-This is an adaption Sonos module of [Vaggan's](https://github.com/Vaggan) [MagicMirror-SonosModule](https://github.com/Vaggan/MagicMirror-SonosModule). It was modified to fit the new module system and got some enhancements in visualisation an configuration.
+This is an adaption of the [MagicMirror-SonosModule](https://github.com/Vaggan/MagicMirror-SonosModule) by [Vaggan](https://github.com/Vaggan). It was modified to fit the new module system and got some enhancements in visualisation an configuration.
 
 ![Sonos Module](https://github.com/CFenner/MagicMirror-Sonos-Module/blob/master/.github/preview.png)
 
@@ -31,7 +31,7 @@ Navigate to the new MMM-Sonos folder and install the node dependencies.
 ```shell
 cd MMM-Sonos/ && npm install
 ```
-[Configure](#configuration) the module in your config.js file.
+Configure the module in your config.js file.
 
 ### Configuration
 
@@ -47,11 +47,11 @@ To run the module properly, you need to add the following data to your config.js
 
 You also can set some options to hide different parts of the module.
 
-| Option | Description |
-|---|---|
-|`showStoppedRoom`|Trigger the visualization of stopped rooms.<br><br>**Default value:** `true`|
-|`showAlbumArt`|Trigger the visualization of the album art.<br><br>**Default value:** `true`|
-|`showRoomName`|Trigger the visualization of the room name.<br><br>**Default value:** `true`|
+| Option | Description | Default |
+|---|---|---|
+|`showStoppedRoom`|Trigger the visualization of stopped rooms.|`true`|
+|`showAlbumArt`|Trigger the visualization of the album art.|`true`|
+|`showRoomName`|Trigger the visualization of the room name.|`true`|
 
 ### Known Issues
 
