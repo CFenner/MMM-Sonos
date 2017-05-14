@@ -1,6 +1,6 @@
 [![code climate](https://codeclimate.com/github/CFenner/MMM-Sonos/badges/gpa.svg)](https://codeclimate.com/github/CFenner/MMM-Sonos)
 [![API](https://img.shields.io/badge/api-Sonos-orange.svg)](https://github.com/jishi/node-sonos-http-api)
-[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/CFenner/MMM-Sonos/blob/master/LICENSE.md)
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://choosealicense.com/licenses/mit/)
 
 # MagicMirror-Sonos-Module
 
