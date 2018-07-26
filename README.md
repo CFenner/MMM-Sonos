@@ -6,6 +6,8 @@
 
 This is an adaption of the [MagicMirror-SonosModule](https://github.com/Vaggan/MagicMirror-SonosModule) by [Vaggan](https://github.com/Vaggan). It was modified to fit the new module system and got some enhancements in visualisation an configuration.
 
+In order to limit RPI load and reduce network request, this module is not updated when the MMM-Sonos is not displayed on the mirror (hidden by MMM-Remote-Control or any Carousel module for example). It is also not updated in case the notification "USER_PRESENCE=false" is received. This notification can be send by the use of a PIR sensor and the module MMM-PIR-Sensor. 
+
 ![Sonos Module](https://github.com/CFenner/MagicMirror-Sonos-Module/blob/master/.github/preview.png)
 
 ## Usage
