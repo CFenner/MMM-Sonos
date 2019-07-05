@@ -11,6 +11,7 @@
 		showRoomName: true,
 		animationSpeed: 1000,
 		updateInterval: 0.5, // every 0.5 minutes
+		artBase: '',
 		apiBase: 'http://localhost',
 		apiPort: 5005,
 		apiEndpoint: 'zones',
@@ -50,7 +51,8 @@
 				var currentTrack = item.coordinator.state.currentTrack;
 				var artist = currentTrack.artist;
 				var track = currentTrack.title;
-				var cover = currentTrack.absoluteAlbumArtUri;
+				var cover = currentTrack.albumArtUri;
+				cover = cover ? cover : currentTrack.absoluteAlbumArtUri;
 				var streamInfo = currentTrack.streamInfo;
 				var type = currentTrack.type;
 
@@ -70,6 +72,9 @@
 		artist = artist?artist:"";
 		track = track?track:"";
 		cover = cover?cover:"";
+		if (cover.substring(0, 6) === '/getaa') {
+			cover = this.config.artBase + cover;
+		}
 		var room = '';
 		// if Sonos Playbar is in TV mode, no title is provided and therefore the room should not be displayed
 		var isEmpty = (artist && artist.trim().length) == 0
