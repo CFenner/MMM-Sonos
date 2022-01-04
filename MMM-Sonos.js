@@ -4,6 +4,7 @@
  * By Christopher Fenner https://github.com/CFenner
  * MIT Licensed.
  */
+ 
  Module.register('MMM-Sonos', {
 	defaults: {
 		showStoppedRoom: true,
@@ -19,17 +20,69 @@
 	},
 	start: function() {
 		Log.info('Starting module: ' + this.name);
+		
+		var ModuleSonosHidden = false; 
+		var UserPresence = true;
+		var updateIntervalID = 0;
+		
 		this.update();
 		// refresh every x minutes
-		setInterval(
+		this.updateIntervalID = setInterval(
 			this.update.bind(this),
 			this.config.updateInterval * 60 * 1000);
 	},
-	update: function(){
+	update: function(){		
+	//	Log.log("Update SONOS demandée !");		
 		this.sendSocketNotification(
 			'SONOS_UPDATE',
 			this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.apiEndpoint);
 	},
+	
+	//Modif AgP42 - 16/07/2018	
+
+	suspend: function() {
+		this.ModuleSonosHidden = true; //Il aurait été plus propre d'utiliser this.hidden, mais comportement aléatoire...
+		//Log.log("Fct suspend - ModuleHidden = " + ModuleHidden);
+		this.GestionUpdateIntervalSonos(); //on appele la fonction qui gere tous les cas
+	},
+	
+	resume: function() {
+		this.ModuleSonosHidden = false;
+		//Log.log("Fct resume - ModuleHidden = " + ModuleHidden);
+		this.GestionUpdateIntervalSonos();	
+	},
+
+	notificationReceived: function(notification, payload) {
+		if (notification === "USER_PRESENCE") { // notification envoyée par le module MMM-PIR-Sensor. Voir sa doc
+			//Log.log("Fct notificationReceived USER_PRESENCE - payload = " + payload);
+			UserPresence = payload;
+			this.GestionUpdateIntervalSonos();
+		}
+	},
+
+	GestionUpdateIntervalSonos: function() {
+		if (UserPresence === true && this.ModuleSonosHidden === false){ // on s'assure d'avoir un utilisateur présent devant l'écran (sensor PIR) et que le module soit bien affiché
+			var self = this;
+			Log.log(this.name + " est revenu et user present ! On update");
+	
+			// update tout de suite
+			this.update();
+			//et on remet l'intervalle d'update en route, si aucun deja actif (pour éviter les instances multiples)
+			if (this.updateIntervalID === 0){
+						
+				this.updateIntervalID = setInterval(
+					this.update.bind(this),
+					this.config.updateInterval * 60 * 1000);
+			}
+		}else{ //sinon (UserPresence = false OU ModuleHidden = true)
+			Log.log("Personne regarde : on stop l'update Sonos !");
+			clearInterval(this.updateIntervalID); // on arrete l'intervalle d'update en cours
+			this.updateIntervalID=0; //on reset la variable
+		}
+	},
+
+	//fin modif AgP
+	
 	render: function(data){
 		var text = '';
 		$.each(data, function (i, item) {
