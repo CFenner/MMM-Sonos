@@ -17,6 +17,7 @@
 		apiEndpoint: 'zones',
  		exclude: []
 	},
+	roomList: [],
 	start: function() {
 		Log.info('Starting module: ' + this.name);
 		this.update();
@@ -30,8 +31,25 @@
 			'SONOS_UPDATE',
 			this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.apiEndpoint);
 	},
+	getRoomName: function(room){
+		var roomName = '';
+		var isGroup = room.members.length > 1;
+		if(isGroup){
+                	$.each(room.members, function (j, member) {
+                                var isExcluded = this.config.exclude.indexOf(member.roomName) !== -1;
+                                roomName += isExcluded?'':(member.roomName + ', ');
+                        }.bind(this));
+                        roomName = room.replace(/, $/,"");
+                }else{
+                        roomName = room.coordinator.roomName;
+                        var isExcluded = this.config.exclude.indexOf(room) !== -1;
+                        roomName = isExcluded?'':room;
+                }
+		return roomName;
+	},
 	render: function(data){
 		var text = '';
+		this.roomList = [];
 		$.each(data, function (i, item) {
 			var room = '';
 			var isGroup = item.members.length > 1;
@@ -52,20 +70,29 @@
 				var artist = currentTrack.artist;
 				var track = currentTrack.title;
 				var cover = currentTrack.absoluteAlbumArtUri;
-				var streamInfo = currentTrack.streamInfo;
-				var type = currentTrack.type;
+//				var streamInfo = currentTrack.streamInfo;
+//				var type = currentTrack.type;
 
 				if(track == currentTrack.uri)
 					track = '';
-				text += this.renderRoom(state, artist, track, cover, room);
+
+                                this.roomList.push({
+                                        'name': room,
+                                        'state': state,
+                                        'artist': artist?artist:"",
+                                        'track': track?track:"",
+                                        'albumArt': cover?cover:"",
+                                });
+
+			//	text += this.renderRoom(state, artist, track, cover, room);
 			}
 		}.bind(this));
 		this.loaded = true;
 		// only update dom if content changed
-		if(this.dom !== text){
-			this.dom = text;
+		//if(this.dom !== text){
+		//	this.dom = text;
 			this.updateDom(this.config.animationSpeed);
-		}
+		//}
 	},
 	renderRoom: function(state, artist, track, cover, roomName) {
 		artist = artist?artist:"";
@@ -99,14 +126,6 @@
 		}
 		return  this.html.roomWrapper.format(room);
 	},
-	html: {
-		loading: '<div class="dimmed light small">Loading music ...</div>',
-		roomWrapper: '<li>{0}</li>',
-		room: '<div class="room xsmall">{0}</div>',
-		song: '<div>{0}</div>',
-		name: '<div class="name normal medium"><div>{0}</div><div>{1}</div></div>',
-		art: '<div class="art"><img src="{0}"/></div>'
-	},
 	getScripts: function() {
 		return [
 			'String.format.js',
@@ -116,21 +135,23 @@
 	getStyles: function() {
 		return ['sonos.css'];
 	},
-	getDom: function() {
-		var content = '';
-		if (!this.loaded) {
-			content = this.html.loading;
-		}else if(this.data.position.endsWith("left")){
-			content = '<ul class="flip">'+this.dom+'</ul>';
-		}else{
-			content = '<ul>'+this.dom+'</ul>';
-		}
-		return $('<div class="sonos">'+content+'</div>')[0];
+	getTemplate: function() {
+		return `${this.name}.njk`;
 	},
-  socketNotificationReceived: function(notification, payload) {
-      if (notification === 'SONOS_DATA') {
-          Log.info('received SONOS_DATA');
-					this.render(payload);
-      }
-  }
+	getTemplateData: function() {
+		return {
+			flip: this.data.position.startsWith('left'),
+			loaded: this.loaded,
+			showAlbumArt: this.config.showAlbumArt,
+			showRoomName: this.config.showRoomName,
+			showStoppedRoom: this.config.showStoppedRoom,
+			roomList: this.roomList,
+		};
+	},
+	socketNotificationReceived: function(notification, payload) {
+		if (notification === 'SONOS_DATA') {
+        		Log.info('received SONOS_DATA');
+			this.render(payload);
+      		}
+  	}
 });
