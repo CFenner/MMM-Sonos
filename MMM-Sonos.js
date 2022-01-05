@@ -114,7 +114,7 @@
 		var content = '';
 		if (!this.loaded) {
 			content = this.html.loading;
-		}else if(this.data.position.endsWith("left")){
+		}else if(this.data.position.startsWith("left")){
 			content = '<ul class="flip">'+this.dom+'</ul>';
 		}else{
 			content = '<ul>'+this.dom+'</ul>';
