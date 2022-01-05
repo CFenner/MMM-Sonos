@@ -8,7 +8,6 @@
 	defaults: {
 		showStoppedRoom: true,
 		showAlbumArt: true,
-		showAlbumArtRight: true,
 		showRoomName: true,
 		animationSpeed: 1000,
 		updateInterval: 0.5, // every 0.5 minutes
@@ -79,14 +78,9 @@
 		// show song if PLAYING
 		if(state === 'PLAYING' && !isEmpty) {
 			room += this.html.song.format(
-				// show album art if 'showAlbumArt' is set
-				(this.config.showAlbumArt && !this.config.showAlbumArtRight
-					?this.html.art.format(cover)
-					:''
-				)+
 				this.html.name.format(artist, track)+
 				// show album art if 'showAlbumArt' is set
-				(this.config.showAlbumArt && this.config.showAlbumArtRight
+				(this.config.showAlbumArt
 					?this.html.art.format(cover)
 					:''
 				)
