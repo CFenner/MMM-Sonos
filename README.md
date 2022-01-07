@@ -10,7 +10,7 @@ This is an adaption of the [MagicMirror-SonosModule](https://github.com/Vaggan/M
 
 ## Usage
 
-_Prerequisites_
+Prerequisites:
 
 - requires MagicMirror v2.0.0
 - install and [run](https://github.com/MichMich/MagicMirror/wiki/Auto-Starting-MagicMirror) [node-sonos-http-api](https://github.com/jishi/node-sonos-http-api)
@@ -22,25 +22,30 @@ Navigate into your MagicMirror's modules folder:
 ```shell
 cd ~/MagicMirror/modules
 ```
+
 Clone this repository:
+
 ```shell
 git clone https://github.com/CFenner/MMM-Sonos
 ```
+
 Navigate to the new MMM-Sonos folder and install the node dependencies.
+
 ```shell
 cd MMM-Sonos/ && npm install --production
 ```
+
 Configure the module in your config.js file.
 
 ### Configuration
 
 To run the module properly, you need to add the following data to your config.js file.
 
-```
+```js
 {
-	module: 'MMM-Sonos',
-	position: 'top_right', // you may choose any location
-	config: {}
+  module: 'MMM-Sonos',
+  position: 'top_right', // you may choose any location
+  config: {}
 }
 ```
 
@@ -56,33 +61,34 @@ You also can set some options to hide different parts of the module.
 
 The module may not be able to access the data of the sonos API due to a Cross-Origin Resource Sharing (CORS) issue. This could be solved by adding the following lines to the `sonos-http-api.js` just before `res.write(new Buffer(jsonResponse));` in the sonos api. Remember to restart the service after the change.
 
-```
+```js
   res.setHeader("Access-Control-Allow-Origin", "http://localhost");
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 ```
 
 ### How to Install Sonos-API
 
-To install the Sonos-API just clone the [repository](https://github.com/jishi/node-sonos-http-api) to your PI. 
+To install the Sonos-API just clone the [repository](https://github.com/jishi/node-sonos-http-api) to your PI.
 
 ```shell
 git clone https://github.com/jishi/node-sonos-http-api.git
 ```
+
 Navigate to the new node-sonos-http-api folder and install the node dependencies.
+
 ```shell
 cd node-sonos-http-api && npm install --production
 ```
+
 Now you can run the service with:
 
 ```shell
 npm start
 ```
+
 I really recommend to use PM2 like it is described on the MagicMirror [Wiki page](https://github.com/MichMich/MagicMirror/wiki/Auto-Starting-MagicMirror).
+
 ```shell
 cd ~/Sonos
 npm start
 ```
-
-
-
-

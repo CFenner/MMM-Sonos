@@ -1,0 +1,25 @@
+{
+  "name": "mmm-sonos",
+  "version": "0.0.1",
+  "description": "[![code climate](https://codeclimate.com/github/CFenner/MMM-Sonos/badges/gpa.svg)](https://codeclimate.com/github/CFenner/MMM-Sonos) [![API](https://img.shields.io/badge/api-Sonos-orange.svg)](https://github.com/jishi/node-sonos-http-api) [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://choosealicense.com/licenses/mit/)",
+  "main": "MMM-Sonos.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CFenner/MMM-Sonos.git"
+  },
+  "keywords": [
+    "magicmirror"
+  ],
+  "author": "CFenner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CFenner/MMM-Sonos/issues"
+  },
+  "homepage": "https://github.com/CFenner/MMM-Sonos#readme",
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}

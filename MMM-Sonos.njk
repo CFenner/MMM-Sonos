@@ -1,0 +1,32 @@
+<div class="sonos">
+  {% if loaded %}
+    <ul class={{ "flip" if flip else "" }}>
+      {% for room in roomList %}
+	{% if room.state == 'PLAYING' or showStoppedRoom %}
+          <li>
+            <div>
+              <div class="name normal medium">
+                <div>{{room.artist}}</div>
+                <div>{{room.track}}</div>
+              </div>
+              {% if showAlbumArt %}
+                <div class="art">
+                  <img src="{{room.albumArt}}"/>
+                </div>
+              {% endif %}
+            </div>
+            {% if showRoomName %}
+              <div class="room xsmall">
+                {{room.name}}
+              </div>
+            {% endif %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="dimmed light small">
+      {{"LOADING"}}
+    </div>
+  {% endif %}
+</div>
