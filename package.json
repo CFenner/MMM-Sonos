@@ -4,7 +4,7 @@
   "description": "[![code climate](https://codeclimate.com/github/CFenner/MMM-Sonos/badges/gpa.svg)](https://codeclimate.com/github/CFenner/MMM-Sonos) [![API](https://img.shields.io/badge/api-Sonos-orange.svg)](https://github.com/jishi/node-sonos-http-api) [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://choosealicense.com/licenses/mit/)",
   "main": "MMM-Sonos.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "validate:js": "eslint **/*.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,12 @@
   "homepage": "https://github.com/CFenner/MMM-Sonos#readme",
   "dependencies": {
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0"
   }
 }

@@ -1,0 +1,13 @@
+env:
+  browser: true
+  es2021: true
+  node: true
+extends:
+  - standard
+parserOptions:
+  sourceType: module
+  ecmaVersion: 2018
+globals:
+  Module: true
+  Log: true
+rules: {}
