@@ -89,7 +89,7 @@
 		this.updateDom(this.config.animationSpeed);
 	},
 	getStyles: function() {
-		return ['sonos.css'];
+		return [`${this.name}.css`];
 	},
 	getTemplate: function() {
 		return `${this.name}.njk`;
