@@ -63,7 +63,7 @@ The module may not be able to access the data of the sonos API due to a Cross-Or
 
 ### How to Install Sonos-API
 
-To install the Sonos-API just clone the [repository](https://github.com/jishi/node-sonos-http-api) to your PI. 
+To install the Sonos-API just clone the [repository](https://github.com/jishi/node-sonos-http-api) to your PI.
 
 ```shell
 git clone https://github.com/jishi/node-sonos-http-api.git
