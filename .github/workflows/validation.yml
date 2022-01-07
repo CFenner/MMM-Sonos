@@ -14,7 +14,7 @@ jobs:
     name: 'MarkdownLint'
     steps:
       - name: Checkout Code
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: Validate Markdown Sources
         uses: nosborn/github-action-markdown-cli@v1.1.1
         with:
