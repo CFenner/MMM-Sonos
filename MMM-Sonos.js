@@ -11,6 +11,7 @@
 		showRoomName: true,
 		animationSpeed: 1000,
 		updateInterval: 0.5, // every 0.5 minutes
+		artBase: '',
 		apiBase: 'http://localhost',
 		apiPort: 5005,
 		apiEndpoint: 'zones',
@@ -62,23 +63,25 @@
 				var currentTrack = item.coordinator.state.currentTrack;
 				var artist = currentTrack.artist;
 				var track = currentTrack.title;
-				var cover = currentTrack.absoluteAlbumArtUri;
+				var cover = currentTrack.albumArtUri;
 //				var streamInfo = currentTrack.streamInfo;
 //				var type = currentTrack.type;
 
 				// clean data
-                                artist = artist?artist.trim():'';
-                                track = track?track.trim():'';
-                                cover = cover?cover.trim():'';
-				track = track == currentTrack.uri?'':track;
+        artist = artist?artist.trim():'';
+        track = track?track.trim():'';
+        cover = cover?cover.trim():'';
+        track = track == currentTrack.uri?'':track;
+				cover = cover?cover:currentTrack.absoluteAlbumArtUri;
+        cover = cover.startsWith('/getaa')?this.config.artBase+cover:cover;
 
-                                roomList.push({
-                                        'name': roomName,
-                                        'state': this.isInTVMode(artist, track, cover)?'TV':item.coordinator.state.playbackState,
-                                        'artist': artist,
-                                        'track': track,
-                                        'albumArt': cover,
-                                });
+        roomList.push({
+          'name': roomName,
+          'state': this.isInTVMode(artist, track, cover)?'TV':item.coordinator.state.playbackState,
+          'artist': artist,
+          'track': track,
+          'albumArt': cover,
+        });
 			}
 		}.bind(this));
 		this.loaded = true;
