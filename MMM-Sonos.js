@@ -60,9 +60,9 @@
 			var roomName = this.getRoomName(item);
 			if(roomName !== ''){
 				var currentTrack = item.coordinator.state.currentTrack;
-				var artist = currentTrack.artist || '';
-				var track = currentTrack.title || '';
-				var cover = currentTrack.absoluteAlbumArtUri || '';
+				var artist = currentTrack.artist;
+				var track = currentTrack.title;
+				var cover = currentTrack.absoluteAlbumArtUri;
 //				var streamInfo = currentTrack.streamInfo;
 //				var type = currentTrack.type;
 
