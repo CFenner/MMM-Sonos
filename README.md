@@ -10,7 +10,7 @@ This is an adaption of the [MagicMirror-SonosModule](https://github.com/Vaggan/M
 
 ## Usage
 
-_Prerequisites_
+Prerequisites:
 
 - requires MagicMirror v2.0.0
 - install and [run](https://github.com/MichMich/MagicMirror/wiki/Auto-Starting-MagicMirror) [node-sonos-http-api](https://github.com/jishi/node-sonos-http-api)
@@ -43,9 +43,9 @@ To run the module properly, you need to add the following data to your config.js
 
 ```js
 {
-	module: 'MMM-Sonos',
-	position: 'top_right', // you may choose any location
-	config: {}
+  module: 'MMM-Sonos',
+  position: 'top_right', // you may choose any location
+  config: {}
 }
 ```
 
@@ -87,6 +87,7 @@ npm start
 ```
 
 I really recommend to use PM2 like it is described on the MagicMirror [Wiki page](https://github.com/MichMich/MagicMirror/wiki/Auto-Starting-MagicMirror).
+
 ```shell
 cd ~/Sonos
 npm start
