@@ -5,7 +5,8 @@
   "main": "MMM-Sonos.js",
   "scripts": {
     "validate:js": "eslint **/*.js",
-    "validate:css": "stylelint **/*.css"
+    "validate:css": "stylelint **/*.css",
+    "compile:css": "lessc MMM-Sonos.less MMM-Sonos.css"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.2.0",
+    "less": "^4.1.2",
     "stylelint": "^14.2.0",
     "stylelint-config-standard": "^24.0.0"
   }
