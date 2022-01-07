@@ -37,3 +37,21 @@ jobs:
         run: npm install
       - name: Validate JS Sources
         run: npm run validate:js
+  stylelint:
+    runs-on: ubuntu-latest
+    name: 'Stylelint'
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Install Dependencies
+        run: npm install
+      - name: Validate CSS Sources
+        run: npm run validate:css
