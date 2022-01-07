@@ -7,16 +7,33 @@ on:
   pull_request:
     branches:
       - master
-    paths:
-      - '**/*.md'
 
 jobs:
   markdownlint:
     runs-on: ubuntu-latest
-    name: 'Markdown Lint'
+    name: 'MarkdownLint'
     steps:
+      - name: Checkout Code
       - uses: actions/checkout@v2
-      - name: Markdown Linting
+      - name: Validate Markdown Sources
         uses: nosborn/github-action-markdown-cli@v1.1.1
         with:
           files: .
+  eslint:
+    runs-on: ubuntu-latest
+    name: 'ESLint'
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Install Dependencies
+        run: npm install
+      - name: Validate JS Sources
+        run: npm run validate:js
