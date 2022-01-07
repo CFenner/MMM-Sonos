@@ -87,13 +87,13 @@
 		}
 		this.roomList = roomList;
 		this.updateDom(this.config.animationSpeed);
-	},
+	},/*
 	getScripts: function() {
 		return [
 			'String.format.js',
 			'//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js'
 		];
-	},
+	},*/
 	getStyles: function() {
 		return ['sonos.css'];
 	},
