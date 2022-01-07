@@ -33,7 +33,7 @@
 	getRoomName: function(room){
 		var roomList = [];
 		if(room.members.length > 1){
-                	$.each(room.members, function (j, member) {
+			room.members.forEach(function (member) {
 				if (!this.isRoomExcluded(member.roomName))
 					roomList.push(member.roomName);
                         }.bind(this));
@@ -56,7 +56,7 @@
 	},
 	updateRoomList: function(data){
 		var roomList = [];
-		$.each(data, function (i, item) {
+		data.forEach(function (item) {
 			var roomName = this.getRoomName(item);
 			if(roomName !== ''){
 				var currentTrack = item.coordinator.state.currentTrack;
