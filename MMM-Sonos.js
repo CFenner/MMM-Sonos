@@ -8,7 +8,6 @@
 	defaults: {
 		showStoppedRoom: true,
 		showAlbumArt: true,
-		showAlbumArtRight: true,
 		showRoomName: true,
 		animationSpeed: 1000,
 		updateInterval: 0.5, // every 0.5 minutes
