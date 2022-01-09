@@ -66,7 +66,7 @@ Module.register('MMM-Sonos', {
         cover = cover ? cover.trim() : ''
         track = track === currentTrack.uri ? '' : track
         // remove stream URL from title
-        if (currentTrack.trackUri && currentTrack.trackUri.includes(track)){
+        if (currentTrack.trackUri && currentTrack.trackUri.includes(track)) {
           track = ''
         }
 
