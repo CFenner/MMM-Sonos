@@ -100,7 +100,7 @@ Module.register('MMM-Sonos', {
       showRoomName: this.config.showRoomName,
       showStoppedRoom: this.config.showStoppedRoom,
       roomList: this.roomList,
-      labelLoading: this.translate('LOADING'),
+      labelLoading: this.translate('LOADING')
     }
   },
   socketNotificationReceived: function (notification, payload) {
