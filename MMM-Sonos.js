@@ -99,7 +99,8 @@ Module.register('MMM-Sonos', {
       showAlbumArt: this.config.showAlbumArt,
       showRoomName: this.config.showRoomName,
       showStoppedRoom: this.config.showStoppedRoom,
-      roomList: this.roomList
+      roomList: this.roomList,
+      labelLoading: this.translate('LOADING'),
     }
   },
   socketNotificationReceived: function (notification, payload) {
