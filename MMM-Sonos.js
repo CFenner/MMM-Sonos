@@ -10,6 +10,7 @@ Module.register('MMM-Sonos', {
     showAlbumArt: true,
     albumArtLocation: 'right',
     showRoomName: true,
+    maxTextLength: undefined,
     animationSpeed: 1000,
     updateInterval: 0.5, // every 0.5 minutes
     apiBase: 'http://localhost',
@@ -51,6 +52,7 @@ Module.register('MMM-Sonos', {
   },
   updateRoomList: function (data) {
     const roomList = []
+    const maxTextLength = this.config.maxTextLength
     data.forEach(function (item) {
       const roomName = this.getRoomName(item)
       if (roomName !== '') {
@@ -69,6 +71,15 @@ Module.register('MMM-Sonos', {
         // remove stream URL from title
         if (currentTrack.trackUri && currentTrack.trackUri.includes(track)) {
           track = ''
+        }
+
+        if (maxTextLength) {
+          if (artist.length > maxTextLength) {
+            artist = `${artist.substring(0, maxTextLength)}...`
+          }
+          if (track.length > maxTextLength) {
+            track = `${track.substring(0, maxTextLength)}...`
+          }
         }
 
         roomList.push({
