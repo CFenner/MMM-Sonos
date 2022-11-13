@@ -8,6 +8,7 @@ Module.register('MMM-Sonos', {
   defaults: {
     showStoppedRoom: true,
     showAlbumArt: true,
+    albumArtLocation: 'right',
     showRoomName: true,
     animationSpeed: 1000,
     updateInterval: 0.5, // every 0.5 minutes
@@ -96,7 +97,10 @@ Module.register('MMM-Sonos', {
     return {
       flip: this.data.position.startsWith('left'),
       loaded: this.loaded,
-      showAlbumArt: this.config.showAlbumArt,
+      showAlbumArtRight:
+        this.config.showAlbumArt && this.config.albumArtLocation !== 'left',
+      showAlbumArtLeft:
+        this.config.showAlbumArt && this.config.albumArtLocation === 'left',
       showRoomName: this.config.showRoomName,
       showStoppedRoom: this.config.showStoppedRoom,
       roomList: this.roomList,

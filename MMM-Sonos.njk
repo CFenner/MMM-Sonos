@@ -5,11 +5,16 @@
         {% if room.state == 'PLAYING' or showStoppedRoom %}
           <li>
             <div>
+             {% if showAlbumArtLeft %}
+                <div class="art">
+                  <img src="{{ room.albumArt }}"/>
+                </div>
+              {% endif %}
               <div class="name normal medium">
                 <div>{{ room.artist }}</div>
                 <div>{{ room.track }}</div>
               </div>
-              {% if showAlbumArt %}
+              {% if showAlbumArtRight %}
                 <div class="art">
                   <img src="{{ room.albumArt }}"/>
                 </div>

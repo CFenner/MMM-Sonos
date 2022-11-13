@@ -55,6 +55,7 @@ You also can set some options to hide different parts of the module.
 |---|---|---|
 |`showStoppedRoom`|Trigger the visualization of stopped rooms.|`true`|
 |`showAlbumArt`|Trigger the visualization of the album art.|`true`|
+|`albumArtLocation`|Specifies on which side of the text the album art is rendered. Possible values: `left`, `right`.|`right`|
 |`showRoomName`|Trigger the visualization of the room name.|`true`|
 
 ### Known Issues
