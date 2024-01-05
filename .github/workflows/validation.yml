@@ -63,7 +63,7 @@ jobs:
           cache: "npm"
       - name: Install Dependencies
         run: npm clean-install
-      - name: Validate CSS Sources
+      - name: Compile CSS
         run: npm run compile:css
       - name: Compare
         run: git diff --exit-code
