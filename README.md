@@ -106,6 +106,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/MagMar94"><img src="https://avatars.githubusercontent.com/u/34011212?v=4?s=100" width="100px;" alt="Magnus"/><br /><sub><b>Magnus</b></sub></a><br /><a href="https://github.com/CFenner/MMM-Sonos/commits?author=MagMar94" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Vaggan"><img src="https://avatars.githubusercontent.com/u/7814763?v=4?s=100" width="100px;" alt="Christopher Edling"/><br /><sub><b>Christopher Edling</b></sub></a><br /><a href="#ideas-Vaggan" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/CFenner/MMM-Sonos/commits?author=Vaggan" title="Code">💻</a> <a href="#research-Vaggan" title="Research">🔬</a></td>
     </tr>
   </tbody>
 </table>
