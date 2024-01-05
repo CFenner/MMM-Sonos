@@ -17,6 +17,12 @@
       ],
       "automerge": true,
       "platformAutomerge": true
+    },
+    {
+      "matchDepTypes": [
+        "action"
+      ],
+      "pinDigests": false
     }
   ]
 }
