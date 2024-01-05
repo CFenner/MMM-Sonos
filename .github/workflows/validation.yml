@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
       - main
+env:
+  node-version: 18.x
 
 jobs:
   markdownlint:
@@ -22,16 +24,13 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     name: 'ESLint'
-    strategy:
-      matrix:
-        node-version: [18.x]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.node-version }}
           cache: "npm"
       - name: Install Dependencies
         run: npm install
@@ -40,18 +39,25 @@ jobs:
   stylelint:
     runs-on: ubuntu-latest
     name: 'Stylelint'
-    strategy:
-      matrix:
-        node-version: [18.x]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.node-version }}
           cache: "npm"
       - name: Install Dependencies
         run: npm install
       - name: Validate CSS Sources
         run: npm run validate:css
+  package-lock-is-up-to-date:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.node-version }}
+          cache: "npm"
+      - run: npm install --ignore-scripts
+      - run: git diff --exit-code
