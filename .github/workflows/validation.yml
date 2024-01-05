@@ -18,7 +18,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - name: Validate Markdown Sources
-        uses: nosborn/github-action-markdown-cli@9fc95163471d6460c35cccad13645912aaa25d5f # v1.1.1
+        uses: nosborn/github-action-markdown-cli@9b5e871c11cc0649c5ac2526af22e23525fa344d # v3.3.0
         with:
           files: .
   eslint:
