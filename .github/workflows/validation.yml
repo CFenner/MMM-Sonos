@@ -16,9 +16,9 @@ jobs:
     name: 'MarkdownLint'
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - name: Validate Markdown Sources
-        uses: nosborn/github-action-markdown-cli@v1.1.1
+        uses: nosborn/github-action-markdown-cli@9fc95163471d6460c35cccad13645912aaa25d5f # v1.1.1
         with:
           files: .
   eslint:
@@ -26,9 +26,9 @@ jobs:
     name: 'ESLint'
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - name: Use Node.js ${{ env.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4
         with:
           node-version: ${{ env.node-version }}
           cache: "npm"
@@ -41,9 +41,9 @@ jobs:
     name: 'Stylelint'
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - name: Use Node.js ${{ env.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4
         with:
           node-version: ${{ env.node-version }}
           cache: "npm"
@@ -54,8 +54,8 @@ jobs:
   package-lock-is-up-to-date:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4
         with:
           node-version: ${{ env.node-version }}
           cache: "npm"
