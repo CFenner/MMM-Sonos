@@ -29,7 +29,7 @@
     "eslint-config-standard": "16.0.3",
     "eslint-plugin-import": "2.29.1",
     "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-promise": "5.2.0",
+    "eslint-plugin-promise": "6.1.1",
     "less": "4.2.0",
     "stylelint": "14.16.1",
     "stylelint-config-standard": "24.0.0"
