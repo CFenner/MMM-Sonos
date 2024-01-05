@@ -15,6 +15,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Vaggan",
+      "name": "Christopher Edling",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7814763?v=4",
+      "profile": "https://github.com/Vaggan",
+      "contributions": [
+        "ideas",
+        "code",
+        "research"
+      ]
     }
   ],
   "contributorsPerLine": 7,
