@@ -5,7 +5,7 @@
     ":automergeLinters",
     "schedule:daily",
     "schedule:automergeDaily"  
-  ]
+  ],
   "packageRules": [
     {
       "matchDepTypes": [
