@@ -20,3 +20,23 @@
 .sonos ul.flip {
   direction: rtl;
 }
+.iso-marquee {
+  overflow: hidden;
+}
+.iso-marquee span {
+  display: inline-block;
+  white-space: nowrap;
+  width: var(--tw);
+  text-shadow: var(--tw) 0 currentcolor,
+                 calc(var(--tw) * 2) 0 currentcolor,
+                 calc(var(--tw) * 3) 0 currentcolor,
+                 calc(var(--tw) * 4) 0 currentcolor;
+  will-change: transform;
+  animation: iso-marquee var(--ad) linear infinite;
+  animation-play-state: play;
+}
+
+@keyframes iso-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}

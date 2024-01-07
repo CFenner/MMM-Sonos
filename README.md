@@ -59,6 +59,7 @@ You also can set some options to hide different parts of the module.
 |`albumArtLocation`|Specifies on which side of the text the album art is rendered. Possible values: `left`, `right`.|`right`|
 |`showRoomName`|Trigger the visualization of the room name.|`true`|
 |`maxTextLength`|The maximum length of the displayed text.|`undefined`|
+|`scrollSpeed`|If `maxTextLength` and `scrollSpeed` is set to a value above 0, the text will not be truncated but scroll in the allocated space instead. A recommended start value is `30`, and then you can tune this value up or down according to your preferences.|`0`|
 
 ### Known Issues
 

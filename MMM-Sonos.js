@@ -11,6 +11,7 @@ Module.register('MMM-Sonos', {
     albumArtLocation: 'right',
     showRoomName: true,
     maxTextLength: undefined,
+    scrollSpeed: 0,
     animationSpeed: 1000,
     updateInterval: 0.5, // every 0.5 minutes
     apiBase: 'http://localhost',
@@ -73,7 +74,7 @@ Module.register('MMM-Sonos', {
           track = ''
         }
 
-        if (maxTextLength) {
+        if (maxTextLength && this.config.scrollSpeed <= 0) {
           if (artist.length > maxTextLength) {
             artist = `${artist.substring(0, maxTextLength)}...`
           }
@@ -108,6 +109,8 @@ Module.register('MMM-Sonos', {
     return {
       flip: this.data.position.startsWith('left'),
       loaded: this.loaded,
+      maxTextLength: this.config.maxTextLength,
+      scrollSpeed: this.config.scrollSpeed,
       showAlbumArtRight:
         this.config.showAlbumArt && this.config.albumArtLocation !== 'left',
       showAlbumArtLeft:
