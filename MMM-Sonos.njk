@@ -1,3 +1,9 @@
+<style>
+.iso-marquee {
+  max-width: {{ maxTextLength }}em;
+}
+</style>
+
 <div class="sonos">
   {% if loaded %}
     <ul class={{ "flip" if flip else "" }}>
@@ -10,7 +16,15 @@
                   <img src="{{ room.albumArt }}"/>
                 </div>
               {% endif %}
-              <div class="name normal medium">
+              {% if scrollSpeed > 0 and room.artist.length > maxTextLength and room.track.length > maxTextLength %}
+                {% if room.artist.length > room.track.length %}
+                  <div class="name normal medium iso-marquee" style="--tw:{{ room.artist.length * 1.1 }}ch; --ad:{{scrollSpeed}}s;">
+                {% else %}
+                   <div class="name normal medium iso-marquee" style="--tw:{{ room.track.length * 1.1 }}ch; --ad:{{scrollSpeed}}s;">
+                {% endif %}
+              {% else %}
+                <div class="name normal medium">
+              {% endif %}
                 <div>{{ room.artist }}</div>
                 <div>{{ room.track }}</div>
               </div>
