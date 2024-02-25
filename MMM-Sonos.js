@@ -55,10 +55,13 @@ Module.register('MMM-Sonos', {
       const roomName = this.getRoomName(item)
       if (roomName !== '') {
         const currentTrack = item.coordinator.state.currentTrack
+        // Get baseUrl from absoluteAlbumArtUri - just the http://xxx.xxx.xxx.xxx:4000
         let baseUrl = currentTrack.absoluteAlbumArtUri.split('/').slice(0, 3).join('/');
         let artist = currentTrack.artist
         let track = currentTrack.title
+        //Get the correct Album Art from albumArtUri - mit be with http might be just /getaaa
         let cover = currentTrack.albumArtUri
+        //Check if http ist in cover and adjust with baseUrl if needed
         if (!cover.startsWith("http")) {
                 // If not, prepend the base URL
                 cover = baseUrl + cover;
