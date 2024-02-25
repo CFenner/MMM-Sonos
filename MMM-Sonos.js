@@ -55,9 +55,15 @@ Module.register('MMM-Sonos', {
       const roomName = this.getRoomName(item)
       if (roomName !== '') {
         const currentTrack = item.coordinator.state.currentTrack
+        let baseUrl = currentTrack.absoluteAlbumArtUri.split('/').slice(0, 3).join('/');
         let artist = currentTrack.artist
         let track = currentTrack.title
-        let cover = currentTrack.absoluteAlbumArtUri
+        let cover = currentTrack.albumArtUri
+        if (!cover.startsWith("http")) {
+                // If not, prepend the base URL
+                cover = baseUrl + cover;
+            }
+        //let cover = currentTrack.absoluteAlbumArtUri
         //        var streamInfo = currentTrack.streamInfo;
         //        var type = currentTrack.type;
 
