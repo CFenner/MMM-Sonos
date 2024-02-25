@@ -66,10 +66,6 @@ Module.register('MMM-Sonos', {
                 // If not, prepend the base URL
                 cover = baseUrl + cover;
             }
-        //let cover = currentTrack.absoluteAlbumArtUri
-        //        var streamInfo = currentTrack.streamInfo;
-        //        var type = currentTrack.type;
-
         // clean data
         artist = artist ? artist.trim() : ''
         track = track ? track.trim() : ''
