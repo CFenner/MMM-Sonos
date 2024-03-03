@@ -55,8 +55,16 @@ Module.register('MMM-Sonos', {
       const roomName = this.getRoomName(item)
       if (roomName !== '') {
         const currentTrack = item.coordinator.state.currentTrack
-        const nextTrack = item.coordinator.state.nextTrack
-        // Get baseUrl from nextTrack.absoluteAlbumArtUri - just the http://xxx.xxx.xxx.xxx:4000 - in some cases currentTrack does not display IP Adress next Track seems to always get IP Adress
+        let nextTrack = currentTrack
+        //Check for Spotify / Amazon Radio & Apple Music - nextTrack could be empty which is a Pain
+        if (currentTrack.uri.includes('spotify')) {
+
+        } else if (currentTrack.type !== 'radio') {
+                nextTrack = item.coordinator.state.nextTrack;
+        } else {
+                nextTrack = currentTrack
+        }
+        // Get baseUrl from either nextTrack.absoluteAlbumArtUri or currentTrack - just the http://xxx.xxx.xxx.xxx:4000 - based on which Source - this is really a pain
         let baseUrl = nextTrack.absoluteAlbumArtUri.split('/').slice(0, 3).join('/');
         let artist = currentTrack.artist
         let track = currentTrack.title
