@@ -56,23 +56,23 @@ Module.register('MMM-Sonos', {
       if (roomName !== '') {
         const currentTrack = item.coordinator.state.currentTrack
         let nextTrack = currentTrack
-        //Check for Spotify, Amazon Radio & Apple Music - nextTrack could be empty which is a Pain
+        // Check for Spotify, Amazon Radio & Apple Music - nextTrack could be empty which is a Pain
         if (currentTrack.uri.includes('spotify')) {
-            //do nothing leave as it is
-        } else if (currentTrack.type !== 'radio' && item.coordinator.state.nextTrack.uri !== '') { //handling Amazon radio lists & Apple Radio
-                nextTrack = item.coordinator.state.nextTrack;
-        } 
+          // do nothing leave as it is
+        } else if (currentTrack.type !== 'radio' && item.coordinator.state.nextTrack.uri !== '') { // Handling Amazon radio lists & Apple Radio
+          nextTrack = item.coordinator.state.nextTrack
+        }
         // Get baseUrl from either nextTrack.absoluteAlbumArtUri or currentTrack - just the http://xxx.xxx.xxx.xxx:4000 - based on which Source - this is really a pain
-        let baseUrl = nextTrack.absoluteAlbumArtUri.split('/').slice(0, 3).join('/');
+        const baseUrl = nextTrack.absoluteAlbumArtUri.split('/').slice(0, 3).join('/')
         let artist = currentTrack.artist
         let track = currentTrack.title
-        //Get the correct Album Art from albumArtUri - might be with http might be just /getaaa
+        // Get the correct Album Art from albumArtUri - might be with http might be just /getaaa
         let cover = currentTrack.albumArtUri
-        //Check if http ist in cover and adjust with baseUrl if needed
-        if (!cover.startsWith("http")) {
-                // If not, prepend the base URL
-                cover = baseUrl + cover;
-            }
+        // Check if http ist in cover and adjust with baseUrl if needed
+        if (!cover.startsWith('http')) {
+          // If not, prepend the base URL
+          cover = baseUrl + cover
+        }
         // clean data
         artist = artist ? artist.trim() : ''
         track = track ? track.trim() : ''
