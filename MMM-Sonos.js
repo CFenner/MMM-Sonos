@@ -83,11 +83,15 @@ Module.register('MMM-Sonos', {
           track = ''
         }
 
+        // Check playback state and only assign album art if playing
+        const playbackState = item.coordinator.state.playbackState
+        cover = (playbackState === 'PLAYING') ? cover : ''
+
         roomList.push({
           name: roomName,
           state: this.isInTVMode(artist, track, cover) ? 'TV' : item.coordinator.state.playbackState,
-          artist: artist,
-          track: track,
+          artist,
+          track,
           albumArt: cover
         })
       }
