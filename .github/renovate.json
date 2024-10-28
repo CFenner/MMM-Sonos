@@ -5,18 +5,18 @@
     "group:linters",
     ":automergeLinters",
     "schedule:daily",
-    "schedule:automergeDaily"  
+    "schedule:automergeDaily"
   ],
   "packageRules": [
     {
       "matchDepTypes": [
         "devDependencies"
       ],
-      "matchPackagePatterns": [
-        "lint"
-      ],
       "automerge": true,
-      "platformAutomerge": true
+      "platformAutomerge": true,
+      "matchPackageNames": [
+        "/lint/"
+      ]
     },
     {
       "matchDepTypes": [
