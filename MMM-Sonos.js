@@ -55,12 +55,24 @@ Module.register('MMM-Sonos', {
       const roomName = this.getRoomName(item)
       if (roomName !== '') {
         const currentTrack = item.coordinator.state.currentTrack
+        let nextTrack = currentTrack
+        // Check for Spotify, Amazon Radio & Apple Music - nextTrack could be empty which is a Pain
+        if (currentTrack.uri.includes('spotify')) {
+          // do nothing leave as it is
+        } else if (currentTrack.type !== 'radio' && item.coordinator.state.nextTrack.uri !== '') { // Handling Amazon radio lists & Apple Radio
+          nextTrack = item.coordinator.state.nextTrack
+        }
+        // Get baseUrl from either nextTrack.absoluteAlbumArtUri or currentTrack - just the http://xxx.xxx.xxx.xxx:4000 - based on which Source - this is really a pain
+        const baseUrl = nextTrack.absoluteAlbumArtUri.split('/').slice(0, 3).join('/')
         let artist = currentTrack.artist
         let track = currentTrack.title
-        let cover = currentTrack.absoluteAlbumArtUri
-        //        var streamInfo = currentTrack.streamInfo;
-        //        var type = currentTrack.type;
-
+        // Get the correct Album Art from albumArtUri - might be with http might be just /getaaa
+        let cover = currentTrack.albumArtUri
+        // Check if http ist in cover and adjust with baseUrl if needed
+        if (!cover.startsWith('http')) {
+          // If not, prepend the base URL
+          cover = baseUrl + cover
+        }
         // clean data
         artist = artist ? artist.trim() : ''
         track = track ? track.trim() : ''
@@ -71,11 +83,15 @@ Module.register('MMM-Sonos', {
           track = ''
         }
 
+        // Check playback state and only assign album art if playing
+        const playbackState = item.coordinator.state.playbackState
+        cover = (playbackState === 'PLAYING') ? cover : ''
+
         roomList.push({
           name: roomName,
           state: this.isInTVMode(artist, track, cover) ? 'TV' : item.coordinator.state.playbackState,
-          artist: artist,
-          track: track,
+          artist,
+          track,
           albumArt: cover
         })
       }
