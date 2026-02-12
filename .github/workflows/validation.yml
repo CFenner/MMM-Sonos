@@ -16,7 +16,7 @@ jobs:
     name: 'MarkdownLint'
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Validate Markdown Sources
         uses: nosborn/github-action-markdown-cli@v3.3.0
         with:
@@ -26,7 +26,7 @@ jobs:
     name: 'ESLint'
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -41,7 +41,7 @@ jobs:
     name: 'Stylelint'
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v4
         with:
